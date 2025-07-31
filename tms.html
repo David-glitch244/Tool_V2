@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tool for 4007 Temperature Data Analysis</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body onload="checkLogin(); populateTimes(); populateCars();">
+    <h1>Tool for 4007 Temperature Data Analysis</h1>
+    <h2>C Train Data</h2>
+    <div class="buttons">
+        <button class="import-btn" onclick="importExcel()">Import from Excel</button>
+        <button class="show-data-btn" onclick="showData()">Show Sensor Temperature</button>
+        <button class="show-abnormal-btn" onclick="showAbnormal()">Show Abnormal Numbering Sensor Temperature</button>
+        <button class="temp-analysis-btn" onclick="showTempAnalysis()">Temperature Analysis</button>
+        <button class="clear-btn" onclick="clearData()">Clear</button>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+    <div class="filter-section">
+        <div class="time-section">
+            <label>Time</label>
+            <select id="time-select" onchange="showData()">
+                <option>all</option>
+            </select>
+        </div>
+        <div class="car-section">
+            <label>Car</label>
+            <select id="car-select" onchange="showData()"></select>
+        </div>
+        <button class="reset-time-btn" onclick="resetTime()">Reset Time</button>
+    </div>
+    <div id="data-display"></div>
+    <input type="file" id="file-input" style="display:none;" onchange="handleFile(this.files)">
+    <div id="abnormalModal" class="modal">
+        <div class="modal-content">
+            <div class="time-section">
+                <label>Time</label>
+                <select id="abnormal-time-select" onchange="updateAbnormalDisplay()">
+                    <option>all</option>
+                </select>
+            </div>
+            <div id="abnormal-display"></div>
+            <button class="close-btn" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+    <div id="tempAnalysisModal" class="modal">
+        <div class="modal-content">
+            <div id="temp-analysis-display"></div>
+            <button class="close-btn" onclick="closeTempModal()">Close</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
